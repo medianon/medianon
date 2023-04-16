@@ -1,5 +1,7 @@
 how to run:
 
+https://youtu.be/ODYB--vOIhM
+
 npm i
 
 add a .env file with the variable FIREBASECONFIG={your firebase config}
