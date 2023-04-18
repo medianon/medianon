@@ -6,7 +6,9 @@ npm i
 
 add a .env file with the variable FIREBASECONFIG={your firebase config}
 
-if it throws an error, add speech marks around everything in the object eg. {"apiKey": "...", "authDomian": "..." ...}
+if theres an error, add speech marks around the object
+
+if theres still an error, add speech marks around everything in the object eg. {"apiKey": "...", "authDomian": "...", "...": "..."}
 
 npm run dev --
 
