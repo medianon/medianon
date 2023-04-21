@@ -10,11 +10,9 @@ click on build on the left and make a new firesore database in test mode
 
 click on settings on the left and make a new web app
 
-add a .env file with the variable FIREBASECONFIG={your firebase config}
+add a .env file with the variable FIREBASECONFIG='{your firebase config}'
 
-if theres an error, add ' around the object eg '{...}'
-
-if theres still an error, add speech marks around everything in the object eg. {"apiKey": "...", "authDomian": "...", "...": "..."}
+if theres an error, add speech marks around everything in the object eg. {"apiKey": "...", "authDomian": "...", "...": "..."}
 
 npm run dev --
 
