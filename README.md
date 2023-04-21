@@ -4,6 +4,12 @@ https://youtu.be/ODYB--vOIhM
 
 npm i
 
+go to your firebase console and make a new project
+
+click on build on the left and make a new firesore database in test mode
+
+click on settings on the left and make a new web app
+
 add a .env file with the variable FIREBASECONFIG={your firebase config}
 
 if theres an error, add ' around the object eg '{...}'
