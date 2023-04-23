@@ -6,7 +6,7 @@ npm i
 
 go to your firebase console and make a new project
 
-click on build on the left and make a new firesore database in test mode
+click on build on the left and make a new firestore database in test mode
 
 click on settings on the left and make a new web app
 
