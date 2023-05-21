@@ -124,7 +124,7 @@
         {/if}
     </div>
     <div class="inline-flex w-[30vw] bg-field rounded ">
-        {#if !archive && boardname != "test"}
+        {#if !archive}
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div class="cursor-pointer ml-1 my-1 px-1 rounded bg-ui2" on:click={newreply} title="You will navigate to this post after replying to it.">New reply</div>
         {/if}
