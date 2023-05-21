@@ -76,10 +76,8 @@
     }
 </script>
 
-{#if boardname != "test"}
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <p class="m-1" role="button" on:click={newthread}>New Thread</p>
-{/if}
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<p class="m-1" role="button" on:click={newthread}>New Thread</p>
 
 <div class="w-screen inline-flex justify-center mt-9">
     <!-- sorting settings etc-->
