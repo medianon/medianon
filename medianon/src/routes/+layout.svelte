@@ -6,22 +6,11 @@
 	import Confirmation from '../components/confirmation.svelte';
 	import { status } from '$lib/store';
 
-	let userinp = "";
-
-
-	//!!!!!!!!!!!!!!!!
-	let secret = "123"
-	//!!!!!!!!!!!!!!!!
-
-
 </script>
-{#if userinp == secret}
-	{#if $status==true}
-		<Navbar />
-		<slot />
-	{:else}
-		<Confirmation />
-	{/if}
+
+{#if $status==true}
+	<Navbar />
+	<slot />
 {:else}
-	<input class="w-[33vw] mt-[33vh] ml-[33vw]" type="text" bind:value={userinp} placeholder="https://www.github.com/medianon/medianon">
+	<Confirmation />
 {/if}
