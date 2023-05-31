@@ -34,7 +34,7 @@ export const load: LayoutServerLoad = async ({ params }) => {
         }
         const threadref = collection(db, "boards", boardname, "threads");
 
-        const threadelquery = query(threadref, where("delete", "<", currentime));
+        const threadelquery = query(threadref, where("deltime", "<", currentime));
         const threadelsnap = await getDocs(threadelquery);
         let gallows: Array<string> = [];
         threadelsnap.forEach(async (doc) => {
