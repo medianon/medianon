@@ -27,7 +27,7 @@
             made: Date.now(),
             // archive: (Date.now()+10000),
             archive: (Date.now()+86400000),
-            delete: (Date.now()+691200000),
+            delete: (Date.now()+604800000),
             }
         Cookies.set("temp", JSON.stringify(inputdata));//check src/hooks.server.ts to see how this is used.
         // console.log(newpost);
