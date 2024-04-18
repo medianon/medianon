@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { createtype, boardnamexport, threadidexport, subscriptions, firstsort, tabdata, returl } from "$lib/store";
+    import { subscriptions, firstsort, tabdata, returl, threadataexport } from "$lib/store";
     import type { threadata, postdata } from '$lib/store';
     import type { PageData } from "./$types";
 	import Bookmarks from "../../../components/bookmarks.svelte";
@@ -16,20 +16,14 @@
         goto("/redirect");
     }
 
-    let threadata: threadata;
-    let replies: postdata[] = [];
+    let threadata: threadata = data.threadata!;
+    let replies: postdata[] = data.replies!;
 
-    if (data.threadata){
-        threadata = data.threadata;
-        data.replies?.forEach(reply => {
-            replies.push(reply)
-        })
-    }
     // console.log(data.threadata);
-    if ($firstsort == "Most recent (Default)"){
+    if ($firstsort == "Most recent"){
         replies.sort((a, b) => 
         (a.made < b.made)? 1 : -1);
-    } else if ($firstsort == "Oldest"){
+    } else if ($firstsort == "Oldest (Default)"){
         replies.sort((a, b) => 
         (a.made > b.made)? 1 : -1);
     } else if ($firstsort == "Replies"){
@@ -45,10 +39,8 @@
     })
 
     function opreply(){
-        createtype.set("Opreply");
-        boardnamexport.set(boardname);
-        threadidexport.set(threadid);
-        document.body.scrollIntoView();
+        threadataexport.set(threadata);
+        goto("/"+boardname+"/"+threadid+"/opreply");
     }
     
     let subscribed = false;
@@ -102,17 +94,19 @@ New Reply</p>
             threadid: threadid
             }}/>
     </div>
-    <!--NOT MY CODE. source: https://stackoverflow.com/questions/67133460/how-to-make-a-triangle-shape-with-tailwind-->
-    <div class="w-11 mx-3 mt-32 overflow-hidden inline-block rounded">
-        <div class=" h-16 rounded bg-arrows rotate-45 transform origin-top-left"></div>
-    </div>
-    <!-- <div class="w-6"></div> -->
-    <div class="h-screen overscroll-contain">
-        {#each replies as postdata}
+    {#if replies.length > 0}
+        <!--NOT MY CODE. source: https://stackoverflow.com/questions/67133460/how-to-make-a-triangle-shape-with-tailwind-->
+        <div class="w-11 mx-3 mt-32 overflow-hidden inline-block rounded">
+            <div class=" h-16 rounded bg-arrows rotate-45 transform origin-top-left"></div>
+        </div>
+        <!-- <div class="w-6"></div> -->
+        <div class="h-screen overscroll-contain">
+            {#each replies as postdata}
             <div class="h-9"></div>
             <Replybox boardname = {boardname} threadid = {threadid} postdata = {postdata} />
-        {/each}
-        <div class="h-[50vh]"></div>
-    </div>
+            {/each}
+            <div class="h-[50vh]"></div>
+        </div>
+    {/if}
 
 </div>

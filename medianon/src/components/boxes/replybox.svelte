@@ -1,20 +1,12 @@
 <script lang="ts">
-    import { bookmarks, newparent, newlayer, createtype, boardnamexport, threadidexport, returl, showhistory, usehistory, history, historylength } from "$lib/store";
+    import { bookmarks, postdataexport, returl, showhistory, usehistory, history, historylength, showmedia, shownsfw, reportarchive } from "$lib/store";
     import type { postdata } from "$lib/store";
     import { goto } from "$app/navigation";
     import Speedreader from "./speedreader.svelte";
     export let archive = false;
     export let boardname = "";
     export let threadid = "";
-    export let postdata: postdata = {
-        postnum: 0,
-        content: "",
-        made: 0,
-        boxes: 0,
-        replies: 0,
-        parent: 0,
-        layer: 0
-    };
+    export let postdata: postdata;
     let markurl = "/"+boardname+"/"+threadid+"/"+postdata.postnum;
     if (archive){
         markurl = "/"+boardname+"/a/"+threadid+"/"+postdata.postnum;
@@ -24,8 +16,6 @@
     let main = postdata.content;
     // console.log(postdata);
     let speedread = false;
-    let full = postdata.content;
-
     
     let bookmarked = false;
     if ($bookmarks.includes(markurl)){
@@ -44,7 +34,8 @@
 
     let morebtn = false;
     let contentsplit: string[] = [];
-    if (postdata.boxes > 1){
+
+    if (postdata.content.length > 333){
         morebtn = true;
         let temp = "";
         if (postdata.content.length > 666){
@@ -56,8 +47,7 @@
             temp = postdata.content.slice(333);
             contentsplit.push(temp);
         }
-        temp = postdata.content.slice(0, 333);
-        main = temp;
+        main = postdata.content.slice(0, 333);
     }
 
     let expandcontent = false;
@@ -65,43 +55,46 @@
         expandcontent = !expandcontent;
     }
 
+    let showimage = false;
+    if($shownsfw && (postdata.reported < 5)){
+        showimage = true;
+    }else if($showmedia && ((postdata.reported == 1) || (postdata.reported == 3))){
+        showimage = true;
+    }
+    function toggleimage(){
+        showimage = !showimage;
+    }
 
     function newreply(){
-        newlayer.set(postdata.layer + 1);
-        newparent.set(postdata.postnum);
-        createtype.set("Newreply");
-        boardnamexport.set(boardname);
-        threadidexport.set(threadid);
-        document.body.scrollIntoView();
+        postdataexport.set(postdata);
+        goto(markurl+"/newreply");
+    }
+
+    function report(){
+        postdataexport.set(postdata);
+        if(archive){
+            reportarchive.set(true);
+        }else{
+            reportarchive.set(false);
+        }
+        goto("/"+boardname+"/"+threadid+"/"+postdata.postnum.toString()+"/report");
     }
 
     function redir(){
-        if (archive){
-            returl.set(markurl);
-        } else {
-            returl.set(markurl);
-        }
+        returl.set(markurl);
         // console.log($returl);
         if ($usehistory){
-            if ($history.length > $historylength - 1){
+            $history.push({
+                archive: archive,
+                boardname: boardname,
+                threadid: threadid,
+                postdata: postdata
+            });
+            if ($history.length > $historylength){
                 $history.splice(0, $history.length - $historylength)
-                $history.push({
-                    archive: archive,
-                    boardname: boardname,
-                    threadid: threadid,
-                    postdata: postdata
-                });
-            } else {
-                $history.push({
-                    archive: archive,
-                    boardname: boardname,
-                    threadid: threadid,
-                    postdata: postdata
-                });
             }
             showhistory.set(false);
         }
-        
         goto("/redirect");
     }
 </script>
@@ -112,7 +105,7 @@
         {#if speedread}
             <div class="w-[30vw]">
                 <!-- <Speedreader /> -->
-                <Speedreader content = {full}/>
+                <Speedreader content = {postdata.content}/>
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <p class="cursor-pointer ml-1 my-1 px-1 rounded bg-speedread w-fit" on:click={()=>speedread = !speedread}>Close</p>
             </div>
@@ -162,5 +155,30 @@
         {expand}
         </div>
         {/each}
+    {/if}
+    {#if ((postdata.reported) && (postdata.reported != 7))}
+        <div class="w-[30vw] inline-flex text-right rounded bg-private border-2 border-field overscroll-contain">
+            {#if ((postdata.reported == 2) || (postdata.reported == 4))}
+                <strong class="mx-1 text-xl text-red-900" title="NSFW">!</strong>
+            {/if}
+            {#if (postdata.reported < 5)}
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <p class="cursor-pointer overflow-clip" on:click={toggleimage}>{postdata.filename}</p>
+            <a class="rounded bg-ui2 ml-3" href={postdata.url} target="_blank" rel="noreferrer">New Tab</a>
+            {:else if (postdata.reported == 5)}
+                Reported
+            {:else}
+                Deleted
+            {/if}
+            {#if (postdata.reported < 3)}
+                <p class="cursor-pointer ml-auto border-red-900 border-2" on:click={report}>
+                    Report</p>
+            {/if}
+        </div>
+        {#if (showimage && postdata.url)}
+            <div class="max-w-[25vw]">
+                <img src={postdata.url} alt="">
+            </div>
+        {/if}
     {/if}
 </div>

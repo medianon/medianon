@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	content: ['./src/**/*.{html,js,svelte,ts}'],
-	theme: {
-		extend: {
-			width: {
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+  theme: {
+    extend: {
+      width: {
 				'69': '17rem',
 				'23': '108px',
 				'76': '19rem',
@@ -48,8 +48,8 @@ module.exports = {
 				subscribe: 'var(--subscribe)',
 
 			},
+    },
+  },
+  plugins: [],
+}
 
-		}
-	},
-	plugins: []
-};

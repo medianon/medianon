@@ -22,9 +22,9 @@ export const defaultcolours = readable({
     history: "rgb(102, 117, 116)"
 });
 export const threadsort = writable("Bump (Default)");
-export const firstsort = writable("Most recent (Default)")
-export const currentsort = writable("Most recent (Default)");
-export const nextsort = writable("Most recent (Default)");
+export const firstsort = writable("Oldest (Default)")
+export const currentsort = writable("Oldest (Default)");
+export const nextsort = writable("Oldest (Default)");
 
 export const searchdata = writable("");
 
@@ -32,15 +32,20 @@ export const usebogo = writable(false);
 export const bogocount = writable(0);
 
 export type threadata = {
+    archive: number,
     title: string,
     content: string,
     made: number,
     bump: number,
-    archive: number,
-    boxes: number,
     replies: number,
-    deltime: number
+    deltime: number,
+    reported: number,
+    filename: string,
+    url: string
 };
+
+export const threadataexport = writable<threadata>();
+
 export const subscriptions = writable<{
     boardname: string,
     threadid: number,
@@ -70,32 +75,84 @@ export const speed = writable(200);
 
 export const bookmarks = writable<string[]>([]);
 
-export const boardnamexport = writable("");
 export type boardata = {
+    archivetime: false,
+    archivedeltime: false,
+    boardeltime: number,
     adminpass: string,
     boardtype: string,
+    bogo: boolean,
+    colourstring: "",
     entrypass: string,
+    established: number,
     lastactive: number,
+    leaderboard: boolean,
+    maxthreads: number,
     ongoing: boolean,
+    pinned: string,
+    postnum: number,
+    replypass: string,
+    threadcount: number,
+    threadpass: string,
     title: string
 }
-export const boardataexport = writable<boardata>();
+export const boardataexport = writable<boardata>({
+    adminpass: "",
+    archivedeltime: false,
+    archivetime: false,
+    boardtype: "",
+    bogo: false,
+    boardeltime: 0,
+    colourstring: "",
+    entrypass: "",
+    established: 0,
+    lastactive: 0,
+    leaderboard: false,
+    maxthreads: 0,
+    ongoing: false,
+    pinned: "",
+    postnum: 0,
+    replypass: "",
+    threadcount: 0,
+    threadpass: "",
+    title: ""
+});
 
 export const createtype = writable("");
 
 export const threadidexport = writable("");
 
 export type postdata = {
-    postnum: number,
     content: string,
+    filename: string,
+    layer: number,
     made: number,
-    boxes: number,
-    replies: number,
     parent: number,
-    layer: number
+    postnum: number,
+    replies: number,
+    reported: number,
+    url: string
 };
+
+export const postdataexport = writable<postdata>();
 
 export const newlayer = writable(0);
 export const newparent = writable(0);
 
 export const returl = writable("");
+
+export type report = {
+    docid: string,
+    boardname: string,
+    threadid: string,
+    postnum: string | undefined,
+    url: string,
+    filename: string,
+    reason: string,
+    reportrefid: string
+}
+
+export const showmedia = writable(false);
+export const shownsfw = writable(false);
+
+export const reportarchive = writable(false);

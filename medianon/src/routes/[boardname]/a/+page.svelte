@@ -1,6 +1,6 @@
 <script lang="ts">
     import { tabdata } from "$lib/store";
-    import { type threadata, searchdata, threadsort } from '$lib/store';
+    import { type threadata, searchdata, threadsort, boardataexport } from '$lib/store';
     import Threadbox from "../../../components/boxes/threadbox.svelte";
     import type { PageData } from "./$types";
     import { page } from "$app/stores";
@@ -60,7 +60,7 @@
     });
 </script>
 
-<div>This space is reserved for a sponsored post. See about page for more information.</div>
+<!-- <div>This space is reserved for a sponsored post. See about page for more information.</div> -->
 <div class="w-screen inline-flex justify-center mt-9">
     <div class="overscroll-contain">
         {#if $searchdata != ""}
@@ -77,4 +77,4 @@
         <div class="h-[50vh]"></div>
     </div>
 </div>
-<div>This space is reserved for a sponsored post. See about page for more information.</div>
+<!-- <div>This space is reserved for a sponsored post. See about page for more information.</div> -->

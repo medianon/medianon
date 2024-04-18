@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-    import { boardnamexport, boardataexport } from "$lib/store";
+    import { boardataexport } from "$lib/store";
 	import bcrypt from 'bcryptjs';
-    
+    import { page } from "$app/stores";
     let inpass = "";
     let adminpass = $boardataexport.adminpass;
     let wrongpass = false;
@@ -28,6 +28,7 @@
     {#if wrongpass}
         <p class="text-xl">Incorrect password</p>
     {/if}
+    <p role="button" on:click={()=>goto("/"+$page.params.boardname)}>Return</p>
 {:else}
-    {()=>goto("/"+$boardnamexport)}
+    {()=>goto("/"+$page.params.boardname)}
 {/if}

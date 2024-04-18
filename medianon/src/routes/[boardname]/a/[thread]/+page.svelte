@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { subscriptions, tabdata, firstsort } from "$lib/store";
+    import { subscriptions, tabdata, firstsort, boardataexport } from "$lib/store";
     import type { threadata, postdata } from "$lib/store";
     import type { PageData } from "./$types";
     import { page } from "$app/stores";
@@ -74,7 +74,6 @@
 {/if}
 
 <div class="w-screen inline-flex justify-center mt-9">
-    <!-- sorting settings etc-->
     <div class="overscroll-contain">
         <div class="h-9"></div>
         <Threadbox boardname = {boardname} threadid = {threadid} postdata = {threadata}/>

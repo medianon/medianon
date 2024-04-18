@@ -1,5 +1,5 @@
-30/01/2024:
-the website is still receiving small updates but this public repository will only be updated after the next major update.
+18/04/2024:
+now uses zero cookies, can upload/report images in special/private boards and general tidy up.
 
 how to run:
 
@@ -13,16 +13,12 @@ click on build on the left and make a new firestore database in test mode
 
 click on settings on the left and make a new web app
 
-add a .env file with the variable FIREBASECONFIG='{your firebase config}'
-
-if theres an error, add speech marks around everything in the object eg. {"apiKey": "...", "authDomian": "...", "...": "..."}
+add your firebase config object to the top of EVERY SINGLE .ts file
 
 npm run dev --
 
 
-this works as of 16/04/2023 on a laptop with linux mint, node 18 and sveltekit 1.0
-
-www.patreon.com/medianon
+twitter/discord: @medianonlegal
 
 
 dev repository established 19/01/2023

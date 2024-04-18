@@ -1,33 +1,18 @@
 <script lang="ts">
-    import { createtype, boardnamexport, boardataexport, tabdata, searchdata, threadsort } from '$lib/store';
+    import { boardataexport, tabdata, searchdata, threadsort } from '$lib/store';
     import type { threadata } from '$lib/store';
-    import type { boardata } from '$lib/store';
     import Threadbox from '../../components/boxes/threadbox.svelte';
     import { page } from "$app/stores";
+    import { goto } from '$app/navigation';
     import type { PageData } from "./$types";
     export let data: PageData;
-
     const boardname = $page.params.boardname;
-    let boardata: boardata;
-
     let threads: {
-        threadid: number,
+        threadid: string,
         threadata: threadata
     }[] = [];
-    if(data.boardata){
-        boardata = data.boardata;
-        boardnamexport.set(boardname);
-        boardataexport.set(boardata);
-        
-        // console.log(data.threadata);
-        data.threads?.forEach(threadobj => {
-            // console.log(threadobj);
-            threads.push({
-                threadid: parseInt(threadobj.threadid),
-                threadata: threadobj.threadata
-            })
-        })
-        // console.log(threads);
+    if(data.threads){
+        threads = data.threads;
     }
     if ($threadsort == "Bump (Default)"){
         threads.sort((a, b) => 
@@ -43,13 +28,12 @@
         (a.threadata.replies < b.threadata.replies)? 1 : -1);
     }
     
-
     function searchops(searchdata: string): {
-        threadid: number,
+        threadid: string,
         threadata: threadata
     }[]{
         let result: {
-            threadid: number,
+            threadid: string,
             threadata: threadata
         }[] = [];
         threads.forEach(thread => {
@@ -61,7 +45,6 @@
     }
     $: searchresult = searchops($searchdata)
 
- 
     tabdata.set({
         boardname: boardname,
         threadid: "",
@@ -70,9 +53,7 @@
     });
 
     function newthread(){
-        boardnamexport.set(boardname);
-        createtype.set("Newthread");
-        document.body.scrollIntoView();
+        goto(boardname+"/newthread");
     }
 </script>
 
@@ -80,19 +61,26 @@
 <p class="m-1" role="button" on:click={newthread}>New Thread</p>
 
 <div class="w-screen inline-flex justify-center mt-9">
-    <!-- sorting settings etc-->
     <div class="overscroll-contain">
         {#if $searchdata != ""}
             {#each searchresult as thread}
                 <div class="h-9"></div>
-                <Threadbox boardname = {boardname} threadid = {thread.threadid.toString()} postdata = {thread.threadata}/>
+                <Threadbox boardname = {boardname} threadid = {thread.threadid} postdata = {thread.threadata}/>
             {/each}
         {:else}
             {#each threads as thread}
                 <div class="h-9"></div>
-                <Threadbox boardname = {boardname} threadid = {thread.threadid.toString()} postdata = {thread.threadata}/>
+                <Threadbox boardname = {boardname} threadid = {thread.threadid} postdata = {thread.threadata}/>
             {/each}
         {/if}
         <div class="h-[50vh]"></div>
     </div>
+    {#if $boardataexport.pinned != ""}
+        <div class="overscroll-contain m-9">
+            <div class="h-96 w-[30vw] rounded bg-ui2 border-2 border-field overflow-y-scroll overscroll-contain"><!--the box-->
+                <p class="text-xl text-center"><strong>Pinned post:</strong></p>
+                <p>{$boardataexport.pinned}</p>
+            </div>
+        </div>
+    {/if}
 </div>

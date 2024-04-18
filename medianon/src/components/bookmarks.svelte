@@ -36,5 +36,4 @@
         <p class="m-1" role="button" on:click={()=>redir(bookmark)}>
         {bookmark}</p>
     {/each}
-    not real time, this will be fixed
 </div>

@@ -1,5 +1,8 @@
-import { FIREBASECONFIG } from "$env/static/private";
-const firebaseconfig = JSON.parse(FIREBASECONFIG);
+// import { FIREBASECONFIG } from "$env/static/private";
+// const firebaseconfig = JSON.parse(FIREBASECONFIG);
+const firebaseconfig = {
+    // yours
+};
 // console.log(firebaseconfig);
 import { initializeApp } from "firebase/app";
 import { getFirestore, getDocs, collection, query, where, doc } from "firebase/firestore";
@@ -39,13 +42,15 @@ export const load: PageServerLoad = (async () => {
     if (done > 0){
         const threadata: threadata = {
             archive: bogodocs.docs[threadid].get("archive"),
-            boxes: bogodocs.docs[threadid].get("boxes"),
             bump: bogodocs.docs[threadid].get("bump"),
             content: bogodocs.docs[threadid].get("content"),
             title: bogodocs.docs[threadid].get("title"),
             deltime: bogodocs.docs[threadid].get("delete"),
             made: bogodocs.docs[threadid].get("made"),
-            replies: bogodocs.docs[threadid].get("replies")
+            replies: bogodocs.docs[threadid].get("replies"),
+            filename: bogodocs.docs[threadid].get("filename"),
+            url: bogodocs.docs[threadid].get("url"),
+            reported: bogodocs.docs[threadid].get("reported")
         }
         return {
             boardname: selectedboard,
@@ -69,10 +74,12 @@ export const load: PageServerLoad = (async () => {
             postnum: bogodocs.docs[postid].get("postnum"),
             content: bogodocs.docs[postid].get("content"),
             made: bogodocs.docs[postid].get("made"),
-            boxes: bogodocs.docs[postid].get("boxes"),
             replies: bogodocs.docs[postid].get("replies"),
             parent: bogodocs.docs[postid].get("parent"),
-            layer: bogodocs.docs[postid].get("layer")
+            layer: bogodocs.docs[postid].get("layer"),
+            filename: bogodocs.docs[postid].get("filename"),
+            url: bogodocs.docs[postid].get("url"),
+            reported: bogodocs.docs[postid].get("reported")
         };
         return {
             boardname: selectedboard,

@@ -1,5 +1,8 @@
-import { FIREBASECONFIG } from "$env/static/private";
-const firebaseconfig = JSON.parse(FIREBASECONFIG);
+// import { FIREBASECONFIG } from "$env/static/private";
+// const firebaseconfig = JSON.parse(FIREBASECONFIG);
+const firebaseconfig = {
+    // yours
+};
 // console.log(firebaseconfig);
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc, getDocs, collection, query, where } from "firebase/firestore";
@@ -18,13 +21,15 @@ export const load: PageServerLoad = (async ({ params }) => {
     const threadoc = await getDoc(threadref);
     const threadata: threadata = {
         archive: threadoc.get("archive"),
-        boxes: threadoc.get("boxes"),
         bump: threadoc.get("bump"),
         content: threadoc.get("content"),
         title: threadoc.get("title"),
         deltime: threadoc.get("deltime"),
         made: threadoc.get("made"),
-        replies: threadoc.get("replies")
+        replies: threadoc.get("replies"),
+        reported: threadoc.get("reported"),
+        filename: threadoc.get("filename"),
+        url: threadoc.get("url"),
     }
 
     const replyref = collection(db, "boards", boardid, "threads", threadid, "replies");
@@ -37,10 +42,12 @@ export const load: PageServerLoad = (async ({ params }) => {
             postnum: doc.get("postnum"),
             content: doc.get("content"),
             made: doc.get("made"),
-            boxes: doc.get("boxes"),
             replies: doc.get("replies"),
             parent: doc.get("parent"),
-            layer: doc.get("layer")
+            layer: doc.get("layer"),
+            reported: doc.get("reported"),
+            filename: doc.get("filename"),
+            url: doc.get("url"),
         })
     })
     

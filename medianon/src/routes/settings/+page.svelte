@@ -1,24 +1,5 @@
-<script context="module">
-    export function apply(coloursobj){
-        document.documentElement.style.setProperty("--background-color", coloursobj.background);
-        document.documentElement.style.setProperty("--default", coloursobj.navbackground);
-        document.documentElement.style.setProperty("--menulines", coloursobj.menulines);
-        document.documentElement.style.setProperty("--color", coloursobj.text);
-        document.documentElement.style.setProperty("--primary", coloursobj.buttons);
-        document.documentElement.style.setProperty("--primary-inverse", coloursobj.btntxt);
-        document.documentElement.style.setProperty("--primary-hover", coloursobj.btnhvr);
-        document.documentElement.style.setProperty("--form-element-background-color", coloursobj.inpbackground);
-        document.documentElement.style.setProperty("--ui2", coloursobj.ui2);
-        document.documentElement.style.setProperty("--tabs", coloursobj.tabs);
-        document.documentElement.style.setProperty("--history", coloursobj.history);
-        document.documentElement.style.setProperty("--arrows", coloursobj.arrows);
-        document.documentElement.style.setProperty("--bookmark", coloursobj.bookmark);
-        document.documentElement.style.setProperty("--subscribe", coloursobj.subscribe);
-        // document.documentElement.style.setProperty("--???", coloursobj.links);
-    }
-</script>
-<script>
-    import { defaultcolours, tabdata, threadsort, firstsort, currentsort, nextsort } from "$lib/store";
+<script lang="ts">
+    import { defaultcolours, tabdata, threadsort, firstsort, currentsort, nextsort, showmedia, shownsfw } from "$lib/store";
     tabdata.set({boardname: ""})
     let coloursobj = {
         userinp: true,
@@ -37,11 +18,44 @@
         tabs: "",
         history: ""
         // links: "",
-
     };
+    function apply(coloursobj: {
+        background: string,
+        navbackground: string,
+        menulines: string,
+        text: string,
+        buttons: string,
+        btntxt: string,
+        btnhvr: string,
+        inpbackground: string,
+        ui2: string,
+        tabs: string,
+        history: string,
+        arrows: string,
+        bookmark: string,
+        subscribe: string
+        // : string,
+    }){
+        document.documentElement.style.setProperty("--background-color", coloursobj.background);
+        document.documentElement.style.setProperty("--default", coloursobj.navbackground);
+        document.documentElement.style.setProperty("--menulines", coloursobj.menulines);
+        document.documentElement.style.setProperty("--color", coloursobj.text);
+        document.documentElement.style.setProperty("--primary", coloursobj.buttons);
+        document.documentElement.style.setProperty("--primary-inverse", coloursobj.btntxt);
+        document.documentElement.style.setProperty("--primary-hover", coloursobj.btnhvr);
+        document.documentElement.style.setProperty("--form-element-background-color", coloursobj.inpbackground);
+        document.documentElement.style.setProperty("--ui2", coloursobj.ui2);
+        document.documentElement.style.setProperty("--tabs", coloursobj.tabs);
+        document.documentElement.style.setProperty("--history", coloursobj.history);
+        document.documentElement.style.setProperty("--arrows", coloursobj.arrows);
+        document.documentElement.style.setProperty("--bookmark", coloursobj.bookmark);
+        document.documentElement.style.setProperty("--subscribe", coloursobj.subscribe);
+        // document.documentElement.style.setProperty("--???", coloursobj.links);
+    }
     function resetcolours(){
         apply($defaultcolours)
     }
+    
 </script>
 
 <div class="text-center mt-6">
@@ -50,35 +64,36 @@
         <p class="mr-1">Sort threads by: </p>
         <select name="thread" bind:value={$threadsort}>
             <option>Bump (Default)</option>
-            <option>Most recent</option>
             <option>Oldest</option>
+            <option>Most recent</option>
             <option>Replies</option>
         </select>
         <p class="ml-3 mr-1">Sort first layer by: </p>
-        <select name="next" bind:value={$firstsort}>
-            <option>Most recent (Default)</option>
-            <option>Oldest</option>
+        <select name="first" bind:value={$firstsort}>
+            <option>Oldest (Default)</option>
+            <option>Most recent</option>
             <option>Replies</option>
         </select>
         <p class="ml-9 mr-1">Sort current layer by: </p>
         <select name="current" bind:value={$currentsort}>
-            <option>Most recent (Default)</option>
-            <option>Oldest</option>
+            <option>Oldest (Default)</option>
+            <option>Most recent</option>
             <option>Replies</option>
         </select>
         <p class="ml-9 mr-1">Sort next layer by: </p>
         <select name="next" bind:value={$nextsort}>
-            <option>Most recent (Default)</option>
-            <option>Oldest</option>
+            <option>Oldest (Default)</option>
+            <option>Most recent</option>
             <option>Replies</option>
         </select>
     </div><br><br>
-    Show all media by default: <input type="checkbox"><br>
-    Including NSFW: <input type="checkbox">
+    Show all media by default: <input type="checkbox" bind:checked={$showmedia}><br>
+    Including NSFW: <input type="checkbox" bind:checked={$shownsfw}>
     <br><br><br>
     Colour settings: <br><br>
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <p role="button" on:click={resetcolours}>Reset</p><br><br>
+    <p role="button" on:click={()=>{apply(coloursobj)}}>Apply </p><br><br>
     <div class="text-center">
         Background: <input type="color" bind:value={coloursobj.background}><br>
         Navigation background: <input type="color" bind:value={coloursobj.navbackground}><br>
@@ -93,11 +108,10 @@
         Post History: <input type="color" bind:value={coloursobj.history}><br>
         Input background: <input type="color" bind:value={coloursobj.inpbackground}><br>
         Arrows: <input type="color" bind:value={coloursobj.arrows}><br>
-        ui2 (content box background and various other things): <br><input type="color" bind:value={coloursobj.ui2}><br>
-        <!-- Links: <input type="color" bind:value={coloursobj.links}><br> -->
-        Links: idk, later <br><br>
+        ui2 (content box background and various other things): <br><input type="color" bind:value={coloursobj.ui2}><br><br>
+        <!-- Links: <input type="color" bind:value={coloursobj.links}><br> later-->
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <p role="button" on:click={apply(coloursobj)}>Apply </p><br>
+        <p role="button" on:click={()=>{apply(coloursobj)}}>Apply </p><br>
     </div>
 </div>
 <div class="h-[30vh]"></div>

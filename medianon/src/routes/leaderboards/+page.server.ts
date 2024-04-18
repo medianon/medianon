@@ -1,8 +1,11 @@
-import { FIREBASECONFIG } from "$env/static/private";
-const firebaseconfig = JSON.parse(FIREBASECONFIG);
+// import { FIREBASECONFIG } from "$env/static/private";
+// const firebaseconfig = JSON.parse(FIREBASECONFIG);
+const firebaseconfig = {
+    // yours
+};
 // console.log(firebaseconfig);
 import { initializeApp } from "firebase/app";
-import { getFirestore, getDocs, collection, query, where, doc, orderBy, startAt } from "firebase/firestore";
+import { getFirestore, getDocs, collection, query, where, limit, orderBy } from "firebase/firestore";
 const app = initializeApp(firebaseconfig);
 const db = getFirestore(app);
 
@@ -10,7 +13,7 @@ import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = (async () => {
     const boardref = collection(db, "boards");
-    const lbquery = query(boardref, where("leaderboard", "==", true), where("postnum", ">", 99));
+    const lbquery = query(boardref, where("leaderboard", "==", true), where("postnum", ">", 99), orderBy("postnum", "desc"), limit(100));
     let lbdocs = await getDocs(lbquery);
 
     let leaderboardata: {

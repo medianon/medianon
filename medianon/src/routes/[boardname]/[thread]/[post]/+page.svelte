@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { subscriptions, createtype, returl, tabdata, currentsort, nextsort } from '$lib/store';
+	import { subscriptions, threadataexport, returl, tabdata, currentsort, nextsort } from '$lib/store';
     import type { threadata, postdata } from '$lib/store';
 	import Bookmarks from '../../../../components/bookmarks.svelte';
 	import Threadbox from '../../../../components/boxes/threadbox.svelte';
@@ -16,17 +16,9 @@
     const boardname = $page.params.boardname;
     const threadid = $page.params.thread;
     const postid = $page.params.post;
-    let currentpost: postdata;
-    let threadata: threadata;
-    let replies: postdata[] = [];
-    
-    if (data.threadata){
-        currentpost = data.currentpost;
-        threadata = data.threadata;
-        data.replies?.forEach(reply => {
-            replies.push(reply)
-        })
-    }
+    let currentpost: postdata = data.currentpost!;
+    let threadata: threadata = data.threadata!;
+    let replies: postdata[] = data.replies!;
     
     let previousdata: postdata;
 
@@ -36,9 +28,7 @@
     let nextlayereplies: postdata[] = [];
 
     replies.forEach(reply => {
-        if (reply.postnum == currentpost.postnum){
-            currentpost = reply;
-        } else if (reply.postnum == currentpost.parent){
+        if (reply.postnum == currentpost.parent){
             previousdata = reply;
         } else if (reply.layer == currentpost.layer && reply.postnum != currentpost.postnum){
             currentlayereplies.push(reply);
@@ -47,10 +37,10 @@
         }
     });
 
-    if ($currentsort == "Most recent (Default)"){
+    if ($currentsort == "Most recent"){
         currentlayereplies.sort((a, b) => 
         (a.made < b.made)? 1 : -1);
-    } else if ($currentsort == "Oldest"){
+    } else if ($currentsort == "Oldest (Default)"){
         currentlayereplies.sort((a, b) => 
         (a.made > b.made)? 1 : -1);
     } else if ($currentsort == "Replies"){
@@ -58,10 +48,10 @@
         (a.replies < b.replies)? 1 : -1);
     }
 
-    if ($nextsort == "Most recent (Default)"){
+    if ($nextsort == "Most recent"){
         nextlayereplies.sort((a, b) => 
         (a.made < b.made)? 1 : -1);
-    } else if ($nextsort == "Oldest"){
+    } else if ($nextsort == "Oldest (Default)"){
         nextlayereplies.sort((a, b) => 
         (a.made > b.made)? 1 : -1);
     } else if ($nextsort == "Replies"){
@@ -104,8 +94,8 @@
     }
 
     function opreply(){
-        createtype.set("Opreply");
-        document.body.scrollIntoView();
+        threadataexport.set(threadata);
+        goto("/"+boardname+"/"+threadid+"/opreply");
     }
     
     function togglecurrentlayer(){
@@ -165,7 +155,6 @@
 </div>
         
 <div class="w-screen inline-flex justify-center mt-9">
-        <!-- sorting settings etc-->
     <div class="overscroll-contain">
         {#if showtrail}
             <div class="h-9"></div>
@@ -231,6 +220,8 @@
             {/each}
             <div class="h-[50vh]"></div>
         </div>
+    {:else}
+        <div class="w-[30-vw]"></div>
     {/if}
 
 </div>

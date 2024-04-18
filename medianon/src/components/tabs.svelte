@@ -61,10 +61,10 @@
         </p>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <p class="ml-6 mt-1" role="button" on:click={closeall} title="This is irreversible.">Close all tabs</p>
-        <br> Each button here will also close the tab menu.
+        <br>
     </div>
 </div>
-<div class="w-full inline-flex sticky top-[140px] bg-tabs overflow-x-scroll">
+<div class="w-full inline-flex sticky top-[146px] bg-tabs overflow-x-scroll">
     {#each urlarray as tab, index}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <p class="mx-1 mb-3" role="button" on:click={()=>redir(tab)}>{tab}</p>

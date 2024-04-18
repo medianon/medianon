@@ -4,27 +4,24 @@
     <strong>SvelteKit</strong><br>
     <a href="https://kit.svelte.dev">https://kit.svelte.dev</a> <br>
     medianon wouldnt exist without sveltekit. as far as im concerned, if you helped make sveltekit, you helped make medianon. <br>
-    if you are looking to make a web app yourself, look into sveltekit now and thank me later. <br>
-    there may be better frameworks in the future, but sveltekit is the gold standard. the bare minimum. <br><br><br>
+    if you are looking to make a web app yourself, look into sveltekit first. <br>
+    there may be better frameworks in the future, but this is the gold standard. the bare minimum. <br><br><br>
     <strong>Tailwind CSS and Pico.css</strong><br>
     <a href="https://tailwindcss.com">https://tailwindcss.com</a>  <a href="https://picocss.com">https://picocss.com</a> <br>
-    until css as a whole is upended and replaced by anything else, these two modules in tandem is as good as it gets in my opinion. <br>
+    <a href="https://marketplace.visualstudio.com/items?itemName=moalamri.inline-fold">Inline fold extension by Mohammed Aalmri</a> <br>
+    until css as a whole is replaced by anything else, this is as good as it gets. <br>
     my sincerest thanks to the developers of tailwind and pico for making writing css bearable (this is higher praise than you can understand. i hate writing css.). <br><br><br>
     <strong>Visual Studio Code</strong><br>
     <a href="https://code.visualstudio.com">https://code.visualstudio.com</a><br>
-    every single time i open vs code, it takes a few seconds to get over the fact that i can use it for free. <br>
-    its one of the few monopolies i have no problem with (as of 09/03/2023). <br><br><br>
+    every single time i open vs code, it takes a few seconds to get over the fact that i can use it for free. <br><br><br>
     <strong>Google</strong><br>
     <a href="https://www.google.com">https://www.google.com</a><br>
-    theres a reason it is what it is. <br>
-    to overlook it would be foolish. <br><br><br>
     <strong>Firebase</strong><br>
     <a href="https://firebase.google.com">https://firebase.google.com</a><br>
     the first iteration of medianon was built using firebase. <br>
     say what you will about its surroundings and extended family but firebase is an exceptional service especially considering the cost to get started is 0. <br><br><br>
     <strong>YouTube</strong><br>
     <a href="https://www.youtube.com">https://www.youtube.com</a><br>
-    in my humble opinion, the most important website ever made (as of 09/03/2023). <br><br>
     here is a list of youtube channels that helped me greatly during development. my sincerest thanks for your work. <br>
     <a href="https://www.youtube.com/@Codevolution"><strong>Codevolution https://www.youtube.com/@Codevolution</strong></a><br>
     <a href="https://www.youtube.com/@ConsultingNinja"><strong>Consulting Ninja https://www.youtube.com/@ConsultingNinja</strong></a><br>
@@ -38,9 +35,7 @@
     <a href="https://www.youtube.com/@webdevkit"><strong>Web Dev Kit https://www.youtube.com/@webdevkit</strong></a><br>
     <a href="https://www.youtube.com/@WebDevSimplified"><strong>Web Dev Simplified https://www.youtube.com/@WebDevSimplified</strong></a><br><br><br>
     <strong>Github</strong><br>
-    <a href="https://github.com">https://github.com</a><br>
-    another one of the monopolies i have no problem with (as of 09/03/2023). <br>
-    if youre putting off learning git, dont. i promise its easier than you think and youll love it (check out the source control tab in vs code). <br><br><br>
+    <a href="https://github.com">https://github.com</a><br><br><br>
     <strong>Peter Wiegel</strong><br>
     <a href="http://www.peter-wiegel.de">http://www.peter-wiegel.de</a><br>
     the font used in the medianon logo is called Erikas Büro and made by Peter Wiegel. thank you for your work and making it freely available. <br><br><br>
@@ -48,10 +43,8 @@
     <a href="https://stackoverflow.com">Stack Overflow https://stackoverflow.com</a> if you have ever helped anyone on stackoverflow, you have helped me. <strong>thank you sincerely.</strong><br>
     <a href="https://stackoverflow.com/questions/67133460/how-to-make-a-triangle-shape-with-tailwind">Temani Afif https://stackoverflow.com/questions/67133460/how-to-make-a-triangle-shape-with-tailwind</a><br>
     <a href="https://github.com/kelektiv/node.bcrypt.js">bcrypt https://github.com/kelektiv/node.bcrypt.js</a><br>
-    <a href="https://github.com/js-cookie/js-cookie">JavaScript Cookie https://github.com/js-cookie/js-cookie</a><br>
     <strong>Discord</strong><br>
     <a href="https://discord.com">https://discord.com</a><br>
-    just about the perfect communication application. its sad how rarely people stop and think about how it all works. if you made discord, give yourself a pat on the back. <br>
     <a href="https://discord.gg/reactiflux">Reactiflux https://discord.gg/reactiflux</a><br>
     <a href="https://discord.me/codesupport">CodeSupport https://discord.me/codesupport</a> <br>
     <a href="https://discord.gg/programming">The Programmer's Hangout https://discord.gg/programming</a><br>

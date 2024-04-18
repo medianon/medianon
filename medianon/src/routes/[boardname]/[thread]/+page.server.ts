@@ -1,5 +1,8 @@
-import { FIREBASECONFIG } from "$env/static/private";
-const firebaseconfig = JSON.parse(FIREBASECONFIG);
+// import { FIREBASECONFIG } from "$env/static/private";
+// const firebaseconfig = JSON.parse(FIREBASECONFIG);
+const firebaseconfig = {
+    // yours
+};
 // console.log(firebaseconfig);
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc, getDocs, collection, query, where } from "firebase/firestore";
@@ -16,17 +19,18 @@ export const load: PageServerLoad = (async ({ params }) => {
     
     const threadref = doc(db, "boards", boardname, "threads", threadid)
     const threadoc = await getDoc(threadref);
-    let threadata: threadata;
-    threadata = {
+    let threadata: threadata = {
             archive: threadoc.get("archive"),
-            boxes: threadoc.get("boxes"),
             bump: threadoc.get("bump"),
             content: threadoc.get("content"),
             title: threadoc.get("title"),
             deltime: threadoc.get("deltime"),
             made: threadoc.get("made"),
-            replies: threadoc.get("replies")
-    }
+            replies: threadoc.get("replies"),
+            reported: threadoc.get("reported"),
+            filename: threadoc.get("filename"),
+            url: threadoc.get("url"),
+    };
     if (currentime > threadata.archive){
         return {redurl: "/"+boardname+"/a/"+threadid}
     }
@@ -41,10 +45,12 @@ export const load: PageServerLoad = (async ({ params }) => {
             postnum: doc.get("postnum"),
             content: doc.get("content"),
             made: doc.get("made"),
-            boxes: doc.get("boxes"),
             replies: doc.get("replies"),
             parent: doc.get("parent"),
-            layer: doc.get("layer")
+            layer: doc.get("layer"),
+            reported: doc.get("reported"),
+            filename: doc.get("filename"),
+            url: doc.get("url"),
         })
     })
     

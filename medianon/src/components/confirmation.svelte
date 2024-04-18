@@ -52,8 +52,8 @@
 </article>
 
 <input class="w-full" type="text" bind:value={input} on:input={check}>
-<p>(case insensetive, full stops required, one space between the two sentences) <br><br>
-   this website is almost entirely dependent on you using a mouse. im very sorry. keyboard shortcuts coming soon</p>
+<p>(case insensetive, full stops required, one space between the two sentences)</p>
+<br><br>
 
 {#if showbtn}
 <div class="text-center">
@@ -64,8 +64,7 @@
 
 <br><br><br>
 <p>DISCLAIMER: this is an independently run website. there is little to no moderation here (see about page). take nothing here seriously.<br>
-    keep any sensitive or personally identifiable information far away from here. i have tried to keep this website secure where necessary (see about page), but i guarantee nothing.<br>
-    see about page for more information.<br>
+    keep any sensitive or personally identifiable information far away from here. i have tried to keep this website secure where necessary (see about page), but i guarantee nothing.<br><br>
     as thanks for reading this far, click on the message.
 </p>
 

@@ -24,18 +24,13 @@
     <br><br><br><br><br><br>
     <strong class="text-2xl">Boards:</strong><br>
     There are currently two types of boards: <br>
-    Public and custom boards. These boards are text only and completely free to make and use. <br>
+    Public and custom boards. These are completely free to make and use. <br>
     <strong>If this fact ever changes, consider the site to be compromised and stop using it.</strong><br><br>
-    In the future there will be two more types of boards. <a href="/view">Private and audio.</a><br>
-    In a private board you can upload images and videos. <br>
-    In an audio board you can upload your songs/podcasts and make private/public playlists. <br>
-    Both of those boards will require payment to set up and may require payment to use depending on how the owner sets up the board. <br>
-    Further details will come later. <br><br>
     Except for public boards, all boards will be deleted thirty days after the last activity, <strong>no exceptions</strong>. <br><br>
     To access a board, type in its <strong>name</strong> on the home page and click enter. <br>
     If its password protected, type in the correct password to access it. <br><br>
     The search function will look through the title and content of the original post of every thread on that board. <br><br>
-    Each board consists of two sections by default. These are 'live' and 'archive'. <br><br><br>
+    Each board consists of two sections by default. These are 'live' and 'archive'. <br><br>
     <strong class="text-xl">Live</strong><br>
     You can only make a new thread or reply to a post in the live section. <br><br>
     After making a thread, it will stay in the live section for twenty four hours by default. After this time, it will be moved to the archive, <strong>no exceptions</strong>. <br><br>
@@ -51,9 +46,7 @@
     Each sponsored post will stay up for seven days and is first come first serve. <br>
     To add a sponsored post, visit https://www.patreon.com/medianon
     <br><br><br><br><br><br>
-    <strong class="text-2xl">Threads and Content boxes:</strong><br>
-    I could explain how navigating a thread and the content boxes work with words, but it'll be more efficient if you test it yourself. <br>
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <p role="button" on:click={()=>goto("/test")}>Test navigation</p>
+    <!-- <strong class="text-2xl">Tutorial video:</strong><br> -->
+    
 </div>
 <div class="h-[50vh]"></div>

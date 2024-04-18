@@ -1,9 +1,6 @@
 <script>
 	import { goto } from "$app/navigation";
-    import { session, createtype, tabdata, tabs, showtabs, showhistory, bogocount } from "../lib/store";
-    import Newthread from "./create/newthread.svelte";
-    import NewReply from "./create/newreply.svelte";
-    import Opreply from "./create/opreply.svelte";
+    import { session, tabdata, tabs, showtabs, showhistory, bogocount } from "../lib/store";
 	import Tabs from "./tabs.svelte";
     import Posthistory from "./posthistory.svelte";
     let warning = false;
@@ -36,15 +33,9 @@
         bogocount.set($bogocount + 1);
         goto("/bogo", {invalidateAll: true});
     }
+
 </script>
 
-{#if $createtype=="Newthread"}
-    <Newthread />
-{:else if $createtype=="Newreply"}
-    <NewReply />
-{:else if $createtype=="Opreply"}
-    <Opreply />
-{/if}
 <div class="inline-flex w-full text-right sticky top-0 bg-default">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="cursor-pointer relative top-2 left-2" on:click={toggle} >
@@ -77,7 +68,7 @@
 </div>
 
 {#if menuopen}
-<div class="h-9 flex justify-around sticky top-[79px] bg-default">
+<div class="h-9 flex justify-around sticky top-[79px] bg-default text-xl">
     <a on:click={toggle} href="/about">About</a>
     <a on:click={toggle} href="/settings">Layout</a>
     <a on:click={toggle} href="/listen">TTS Voice</a>

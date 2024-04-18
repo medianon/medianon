@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { subscriptions, tabdata, currentsort, nextsort } from '$lib/store';
+	import { subscriptions, tabdata, currentsort, nextsort, boardataexport } from '$lib/store';
 	import Bookmarks from '../../../../../components/bookmarks.svelte';
 	import Threadbox from '../../../../../components/boxes/threadbox.svelte';
 	import Replybox from '../../../../../components/boxes/replybox.svelte';
@@ -23,7 +23,6 @@
         data.replies?.forEach(reply => {
             replies.push(reply);
         })
-
     }   
     
     let previousdata: postdata;
@@ -34,9 +33,7 @@
     let nextlayereplies: postdata[] = [];
 
     replies.forEach(reply => {
-        if (reply.postnum == currentpost.postnum){
-            currentpost = reply;
-        } else if (reply.postnum == currentpost.parent){
+        if (reply.postnum == currentpost.parent){
             previousdata = reply;
         } else if (reply.layer == currentpost.layer && reply.postnum != currentpost.postnum){
             currentlayereplies.push(reply);
@@ -159,7 +156,6 @@
 </div>
 
 <div class="w-screen inline-flex justify-center mt-9">
-    <!-- sorting settings etc-->
     <div class="overscroll-contain">
         {#if showtrail}
             <div class="h-9"></div>
@@ -225,6 +221,8 @@
             {/each}
             <div class="h-[50vh]"></div>
         </div>
+    {:else}
+        <div class="w-[35-vw] h-1"></div>
     {/if}
 
 </div>
