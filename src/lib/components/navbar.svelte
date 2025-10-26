@@ -160,7 +160,7 @@
 
         <p class="m-3">
             Session started on: <br>
-            {new Date(session.start).toLocaleString()}
+            {session.start}
         </p>
         <div class="p-2">
             Show images: <input type="checkbox" class="checkbox border" defaultChecked={images.show} onchange={()=>{images.show=!images.show}}> <br>
