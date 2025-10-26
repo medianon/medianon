@@ -31,9 +31,4 @@ function checkinp(){
         <p>Banned characters: /, \, %, ?, #, space</p>
     </div>
     <button type="button" class="btn btn-lg preset-filled-secondary-500 my-3 z-10" disabled={disabled} onclick={()=>goto('/'+input)}>Enter</button>
-    <p>
-        <strong class="text-xl">Public Boards</strong>
-    </p>
-    <p>0-9</p>
-    <button type="button" class="btn preset-filled-primary-600-400" onclick={()=>{goto('/memes')}}>memes</button>
 </div>
