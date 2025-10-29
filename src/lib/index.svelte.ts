@@ -44,7 +44,8 @@ export type boardatatype = {
     ongoing: boolean,
     description: string,
     threadimages: boolean,
-    replyimages: boolean
+    replyimages: boolean,
+    api: boolean
 }
 export type threadatatype = {
     title: string,

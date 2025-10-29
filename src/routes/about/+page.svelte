@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { tabs } from "$lib/index.svelte";
-    
-    tabs.location = '/about';
-    tabs.preview = 'About'
+
 </script>
 <div class="text-xl text-center">
     medianon is an anonymous forum that is free and open source. <br>

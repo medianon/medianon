@@ -1,9 +1,3 @@
-<script lang="ts">
-	import { tabs } from "$lib/index.svelte";
-
-    tabs.location = '/about/credits';
-    tabs.preview = 'Credits'
-</script>
 <p class="text-center">
     here are the resources i used to build this website: <br><br>
     <strong>SvelteKit</strong><br>

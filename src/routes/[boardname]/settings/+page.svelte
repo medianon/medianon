@@ -91,6 +91,7 @@
         <input type="number" name="archivedeltime" required class="input border" min=86400000 max=1296000000 defaultValue=604800000><br>
         Thread Images: <input type="checkbox" name="threadimages" class="checkbox border" defaultChecked={boardexport.boardata.threadimages}><br><br>
         Reply Images: <input type="checkbox" name="replyimages" class="checkbox border" defaultChecked={boardexport.boardata.replyimages}><br><br>
+        API Access: <input type="checkbox" name="api" class="checkbox border" defaultChecked={boardexport.boardata.api}><br><br>
         <button type="submit" class="btn preset-filled-success-500">Update</button><br><br>
         </form>
     </div>

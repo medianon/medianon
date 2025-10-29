@@ -87,7 +87,7 @@
     }
 </script>
 
-<div class="flex-col border-4 border-primary-400 rounded w-full sm:w-[70vw] md:w-[60vw] lg:w-[50vw] max-h-fit m-5 p-3">
+<div class="flex-col border-4 border-primary-400 rounded w-full overflow-y-scroll sm:w-[70vw] md:w-[60vw] lg:w-[50vw] min-h-fit m-5 p-3 no-scrollbar">
     {#if replydata.url != ""}
         <div class="flex flex-col p-2 w-full h-fit border">
         {#if replydata.report == 4}
@@ -119,7 +119,7 @@
         {/if}
         </div>
     {/if}
-        <button type="button" class="overflow-auto max-h-[20vh] text-left min-w-full focus:outline-none" onclick={redir}>
+        <button type="button" class="max-h-[20vh] text-left min-w-full focus:outline-none" onclick={redir}>
             <p class="text-xl p-3">
                 {replydata.content}
             </p>

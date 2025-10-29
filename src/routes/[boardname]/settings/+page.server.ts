@@ -41,6 +41,11 @@ export const actions = {
         if (replyimages != null){
             replyimageuse = true;
         }
+        const api = formdata.get("api");
+        let apiuse: boolean = false;
+        if (api != null){
+            apiuse = true;
+        }
         const maxthreads = formdata.get("maxthreads")!.toString();
         const description = formdata.get("description")!.toString();
         let thread = formdata.get("thread")!.toString();
@@ -72,7 +77,8 @@ export const actions = {
                 // ongoing: false,
                 description: description,
                 threadimages: threadimageuse,
-                replyimages: replyimageuse
+                replyimages: replyimageuse,
+                api: apiuse
             });
         }
         return {success: true};

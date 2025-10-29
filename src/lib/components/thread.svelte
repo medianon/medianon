@@ -90,7 +90,7 @@
     }
 </script>
 
-<div class="flex-col border-4 border-secondary-800 rounded w-full sm:w-[80vw] md:w-[70vw] lg:w-[60vw] min-h-fit m-5 p-3">
+<div class="flex-col border-4 border-secondary-800 rounded w-full overflow-y-scroll sm:w-[80vw] md:w-[70vw] lg:w-[60vw] min-h-fit m-5 p-3 no-scrollbar">
     {#if threadata.url != ""}
         <div class="flex flex-col p-2 w-full h-fit border">
         {#if threadata.report == 4}

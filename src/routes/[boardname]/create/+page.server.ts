@@ -53,7 +53,8 @@ export const actions = {
             ongoing: false,
             description: "",
             threadimages: false,
-            replyimages: false
+            replyimages: false,
+            api: false
         } as boardatatype;
         const checkref = doc(db, "boards", boardname);
         const checkdoc = await getDoc(checkref);
