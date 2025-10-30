@@ -31,7 +31,7 @@
         <strong class="text-error-500">you cannot add an admin password after creating a board without one.</strong>)<br>
         <input type="password" name="admin" bind:value={admin} class="input border"><br>
         Leaderboard Participation: <input type="checkbox" class="checkbox border" name="leaderboard"><br>
-        Bogo Sort Participation: <input type="checkbox" class="checkbox border" name="bogo"><br><br>
+        Bogo Search Participation: <input type="checkbox" class="checkbox border" name="bogo"><br><br>
         This is the final confirmation message. Click create and the board will be created.<br><br>
         <button type="submit" class="btn btn-lg preset-filled-success-500">Create</button>
     </form>
