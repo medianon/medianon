@@ -45,7 +45,7 @@
                         goto("/redirect");
                 }
             }
-        }}>
+        }} action="?/update">
         Board title:<br>
         <input type="text" name="title" required class="input border" value={boardexport.boardata.title}> <br>
         Entry password:<br>
@@ -93,6 +93,8 @@
         Reply Images: <input type="checkbox" name="replyimages" class="checkbox border" defaultChecked={boardexport.boardata.replyimages}><br><br>
         API Access: <input type="checkbox" name="api" class="checkbox border" defaultChecked={boardexport.boardata.api}><br><br>
         <button type="submit" class="btn preset-filled-success-500">Update</button><br><br>
+		<button type="submit" class="btn preset-filled-error-500" formaction="?/delete">Delete</button><br>
+        <strong>This is the final confirmation message.</strong>
         </form>
     </div>
 {/if}
