@@ -1,6 +1,6 @@
 import type { Actions } from "@sveltejs/kit";
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { FIREBASE } from '$env/static/private';
 import bcrypt from "bcryptjs";
 const firebaseconfig = JSON.parse(FIREBASE);
@@ -8,7 +8,7 @@ const app = initializeApp(firebaseconfig);
 const db = getFirestore(app);
 
 export const actions = {
-    default: async ({request, params}) => {
+    update: async ({request, params}) => {
         // const currentime = Date.now();
         const boardname: string = params.boardname as string;
         const formdata = await request.formData();
@@ -82,5 +82,9 @@ export const actions = {
             });
         }
         return {success: true};
+    },
+    delete: async ({request, params})=>{
+      await deleteDoc(doc(db, "boards", params.boardname!))
+      return {success: true}
     }
 } satisfies Actions;
